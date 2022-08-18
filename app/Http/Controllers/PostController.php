@@ -14,9 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(5);
+        $posts = Post::orderBy('created_at','desc')->get();
 
-        return view('home')->withPosts($posts);
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -48,7 +48,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $posts = Post::where('id', $id)->get();
+
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
