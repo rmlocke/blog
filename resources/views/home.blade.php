@@ -17,6 +17,13 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">{{ __('Posts') }}</div>
+                    <a href="/posts">Edit posts</a><br>
+                    <a href="">Upload RSS/CSV</a>
+                    <a href="/users">Edit users</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

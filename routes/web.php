@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Models\Post;
 
 /*
@@ -22,7 +23,9 @@ Route::get('/', function () {
     return view('posts.index', ['posts' => $posts]);
 });
 
-Route::resource('/posts', PostController::class);
+Route::resource('posts', PostController::class);
+Route::resource('users', UserController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -58,6 +58,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/posts">
+                                        {{ __('Edit Posts') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/upload">
+                                        {{ __('Upload RSS/CSV') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/users">
+                                        {{ __('Edit Users') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
