@@ -1,23 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
-    <h2>All posts</h2>
-    @foreach ( $posts as $post )
-        <!-- Post preview-->
-        <div class="post preview">
-            <a href="/posts/{{ $post->id }}">
-                <h2 class="title">{{ $post->title }}</h2>
-            </a>
-            <div class="snippet">
-                {{!! $post->content !!}}
-            </div>
-            <p class="post-meta">
-                Posted by <a href="#">Name</a>
-                <span class="post-date">at {{ $post->created_at->diffForHumans() }}</span>
-            </p>
-            <a href="{{ route('posts.edit', $post) }}">Edit post</a>
-        </div>
-    @endforeach  
-</section>
+<div class="container">
+    <div class="row justify-content-center">
+        <h2>Posts</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ( $posts as $post )
+                    <tr>
+                        <td>{{ $post->id }}</td>
+                        <td>
+                            <a href="/posts/{{ $post->id }}">
+                                {{ $post->title }}
+                            </a>
+                        </td>
+                        <td>{{ $post->user->name }}</td>
+                        <td>{{ $post->created_at }}<td>
+                        <td>
+                            <a href="{{ route('posts.edit', $post) }}">Edit post</a>
+                        </td>
+                    </tr>
+                @endforeach  
+            </tbody>
+        </table>
+        <a href="{{ route('posts.create') }}" class="btn btn-lg">Add post</a>
+    </div>
+</div>
 @endsection
