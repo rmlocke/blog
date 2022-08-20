@@ -14,6 +14,18 @@
                     <span class="post-date">at {{ $post->created_at }}</span>
                 </p>
             </div>
+            <div class="comments">
+                <h2>Comments</h2>
+                @foreach ($post->comments as $comment)
+                    <div class="comment">
+                        {!! $comment->content !!}
+                        <p>
+                            <span class="meta">by {{ $comment->author }}</span>
+                        </p>
+                    </div>
+                @endforeach
+                @include('comments.create')
+            </div>
         </div>
     </div>
 </div>

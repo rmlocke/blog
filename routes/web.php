@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use App\Models\Post;
 
 /*
@@ -27,5 +28,6 @@ Auth::routes();
 
 Route::resource('posts', PostController::class);
 Route::resource('users', UserController::class);
+Route::resource('comments', CommentController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

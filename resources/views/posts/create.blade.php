@@ -29,7 +29,7 @@
                             <label for="content" class="col-md-2 col-form-label text-md-end">{{ __('Content') }}</label>
 
                             <div class="col-md-10">
-                                <textarea id="content" class="form-control editor @error('password') is-invalid @enderror" name="content" required>{{ old('content') }}</textarea>
+                                <textarea id="content" class="form-control editor @error('content') is-invalid @enderror" name="content" required>{{ old('content') }}</textarea>
 
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
