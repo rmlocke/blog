@@ -16,6 +16,7 @@
                 Posted by <a href="#">Name</a>
                 <span class="post-date">at {{ $post->created_at->diffForHumans() }}</span>
             </p>
+            <a href="{{ route('posts.edit', $post) }}">Edit post</a>
         </div>
     @endforeach  
 </section>

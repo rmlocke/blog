@@ -10,6 +10,13 @@ class Post extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['user_id', 'title', 'content'];
+
+    /**
      * Users for post
      */
     public function user()

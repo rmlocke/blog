@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <a href="{{ route('posts.create') }}" class="btn-link btn-lg">+ Add post</a>
                 </div>
             </div>
             <div class="card">
