@@ -5,26 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <a href="{{ route('posts.create') }}" class="btn-link btn-lg">+ Add post</a>
-                </div>
-            </div>
-            <div class="card">
                 <div class="card-header">{{ __('Actions') }}</div>
-                    <a href="/posts">Edit posts</a><br>
-                    <a href="/users">Edit users</a>
+                    <div class="card-body">
+                        <ul>
+                            <li><a href="/posts">Manage posts</a></li>
+                            <li><a href="/users">Manage users</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            @include('posts.upload')
-            @include('options.rss')
         </div>
     </div>
 </div>
+@include('posts.upload')
+@include('options.rss')
 @endsection
