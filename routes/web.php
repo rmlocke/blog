@@ -20,12 +20,12 @@ Route::get('/', function () {
 
     $posts = Post::all();
 
-    return view('posts.index', ['posts' => $posts]);
+    return view('index', ['posts' => $posts]);
 });
+
+Auth::routes();
 
 Route::resource('posts', PostController::class);
 Route::resource('users', UserController::class);
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

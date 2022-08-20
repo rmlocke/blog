@@ -5,10 +5,10 @@
     <h2>All users</h2>
     @foreach ( $users as $user )
         <div class="user preview">
-            <a href="/users/{{ $user->id }}">
-                <h2 class="title">{{ $user->name }}</h2>
-            </a>
+            <h2 class="title">{{ $user->name }}</h2>
+            <a href="{{ route('users.edit', $user) }}">Edit user</a>
         </div>
-    @endforeach  
+    @endforeach
+    <a href="{{ route('users.create') }}" class="btn-link btn-lg">Add user</a>
 </section>
 @endsection

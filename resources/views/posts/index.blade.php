@@ -10,7 +10,7 @@
                 <h2 class="title">{{ $post->title }}</h2>
             </a>
             <div class="snippet">
-                {{ $post->content }}
+                {{!! $post->content !!}}
             </div>
             <p class="post-meta">
                 Posted by <a href="#">Name</a>

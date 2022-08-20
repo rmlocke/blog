@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.edit');
+        return view('users.create');
     }
 
     /**
@@ -37,7 +43,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'email',//:rfc,dns
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        $user->save();
+
+        return redirect('/users');
     }
 
     /**
@@ -54,24 +74,51 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('users.edit');
+        return view('users.edit')->withUser($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+
+        if ($request->has('password') && $request->password) {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'email',//:rfc,dns
+                'password' => 'required|confirmed|min:8'
+            ]);
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'email',//:rfc,dns
+            ]);
+        }
+
+        if ($request->has('password') && $request->password) {
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $user->save();
+
+        return redirect('/users');
     }
 
     /**
