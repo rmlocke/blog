@@ -116,4 +116,23 @@ class PostController extends Controller
     {
         //
     }
+
+    /**
+     * Upload csv
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function csvupload(Request $request)
+    {
+        $filepath = $request->file('file')->getRealPath();
+
+        /*
+        $records = array_map('str_getcsv', file($filepath));
+
+        if (! count($records) > 0) {
+           //error
+        }
+        */
+    }    
 }

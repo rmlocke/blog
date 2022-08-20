@@ -13,9 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
-
                     <a href="{{ route('posts.create') }}" class="btn-link btn-lg">+ Add post</a>
                 </div>
             </div>
@@ -26,6 +23,7 @@
                     <a href="/users">Edit users</a>
                 </div>
             </div>
+            @include('posts.upload')
         </div>
     </div>
 </div>
