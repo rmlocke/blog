@@ -64,18 +64,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/posts">
-                                        {{ __('Edit Posts') }}
+                                    <a class="dropdown-item" href="/home">
+                                        {{ __('Dashboard') }}
                                     </a>
-                                    <a class="dropdown-item" href="/upload">
-                                        {{ __('Upload RSS/CSV') }}
+                                    <a class="dropdown-item" href="/posts">
+                                        {{ __('Posts') }}
                                     </a>
                                     <a class="dropdown-item" href="/users">
-                                        {{ __('Edit Users') }}
+                                        {{ __('Users') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

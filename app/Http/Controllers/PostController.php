@@ -125,14 +125,59 @@ class PostController extends Controller
      */
     public function csvupload(Request $request)
     {
-        $filepath = $request->file('file')->getRealPath();
+        $result = [];
 
-        /*
-        $records = array_map('str_getcsv', file($filepath));
+        if($request->file()) {
 
-        if (! count($records) > 0) {
-           //error
+            $file = $request->file('file');
+
+            $fileExtension = $file->getClientOriginalExtension();
+
+            if ($fileExtension == 'csv') {
+                $filepath = $file->getRealPath();
+
+                //check file type
+        
+                /*
+                $records = array_map('str_getcsv', file($filepath));
+        
+                if (! count($records) > 0) {
+                   //error
+                }
+        
+                // Get field names from header column
+                $fields = array_map('strtolower', $records[0]);
+        
+                // Remove the header column
+                array_shift($records);
+        
+                foreach ($records as $record) {
+                    if (count($fields) != count($record)) {
+                        return 'csv_upload_invalid_data';
+                    }
+        
+                    // Set the field name as key
+                    $record = array_combine($fields, $record);
+        
+                    // Get the clean data
+                    $this->rows[] = $record;
+                }
+        
+                foreach ($this->rows as $data) {
+                    Post::create([
+                       'title' => $data['title'],
+                       'content' => $data['content'],
+                       'user_id' => $data['user_id']
+                    ]);
+                }
+                */
+            } else {
+                $result['error'] = 'File extension is not .csv';
+            }
+        } else {
+            $result['error'] = 'No file uploaded.';
         }
-        */
+
+        return view('posts.uploadresult')->withResult($result);
     }    
 }

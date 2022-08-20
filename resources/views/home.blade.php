@@ -17,13 +17,13 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">{{ __('Posts') }}</div>
+                <div class="card-header">{{ __('Actions') }}</div>
                     <a href="/posts">Edit posts</a><br>
-                    <a href="">Upload RSS/CSV</a>
                     <a href="/users">Edit users</a>
                 </div>
             </div>
             @include('posts.upload')
+            @include('options.rss')
         </div>
     </div>
 </div>
