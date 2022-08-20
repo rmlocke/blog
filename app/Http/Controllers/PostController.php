@@ -13,7 +13,7 @@ class PostController extends Controller
     {
         $this->middleware('auth')->except(['show']);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -68,9 +68,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $posts = Post::where('id', $id)->get();
+        $post = Post::findOrFail($id);
 
-        return view('posts.index')->withPosts($posts);
+        return view('posts.post')->withPost($post);
     }
 
     /**
