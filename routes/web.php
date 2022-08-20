@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Models\Post;
+use App\Models\Rss;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,18 +27,11 @@ Route::get('/', function () {
 
 Route::get('/rss', function () {
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,'https://feeds.simplecast.com/54nAGcIl');
-    curl_setopt($ch, CURLOPT_HEADER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $xml = curl_exec($ch);
-    curl_close($ch);
-    
-    $return_data = new SimpleXmlElement($xml, LIBXML_NOCDATA);
-    
-    foreach($return_data->channel->item as $item) {
-        print_r($item);
-    }
+    $feedReader = new Rss();
+
+    $items = $feedReader->get();
+
+    print_r($items);
 });
 
 Auth::routes();
