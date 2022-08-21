@@ -20,7 +20,7 @@ use App\Models\Rss;
 
 Route::get('/', function () {
 
-    $posts = Post::all();
+    $posts = Post::paginate(10);
 
     return view('index', ['posts' => $posts]);
 });
@@ -31,7 +31,22 @@ Route::get('/rss', function () {
 
     $items = $feedReader->get();
 
-    print_r($items);
+    if (!empty($items)) {
+        foreach($items as $item) {
+            //check we don't already have this
+            $posts = Post::where('title', $item->title)->get();
+
+            if ($posts->isEmpty()) {
+                $post = new Post([
+                    'user_id' => 0,
+                    'title' => $item->title,
+                    'content' => $item->description
+                ]);
+        
+                $post->save();
+            }
+        }
+    }
 });
 
 Auth::routes();

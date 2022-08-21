@@ -10,27 +10,38 @@ class Rss
     /**
      * Get items from rss feed
      * 
-     * @return mixed
+     * @return SimpleXMLElement[]
      */
     public function get()
     {
         $items = [];
 
+        $errorMessage = null;
+
         //get from options
         $feedUrl = $this->getFeedUrl();
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $feedUrl);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $xml = curl_exec($ch);
-        curl_close($ch);
-        
-        //handle error
-        $return_data = new SimpleXmlElement($xml, LIBXML_NOCDATA);
-        
-        foreach($return_data->channel->item as $item) {
-            $items[] = $item;
+        if ($feedUrl) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $feedUrl);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $xml = curl_exec($ch);
+
+            //handle error
+            if (curl_errno($ch)) {
+                $errorMessage = curl_error($ch);
+            }
+
+            curl_close($ch);
+
+            if (!$errorMessage) {
+                $data = new SimpleXmlElement($xml, LIBXML_NOCDATA);
+            
+                foreach($data->channel->item as $item) {
+                    $items[] = $item;
+                }
+            }
         }
 
         return $items;
