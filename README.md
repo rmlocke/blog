@@ -12,3 +12,5 @@
 - A CRUD API for blog posts
 
 Create an account to add posts, upload a csv or configure the rss feed in the dashboard.
+
+Run the database seeder to create users, posts and comments: php artisan db:seed
