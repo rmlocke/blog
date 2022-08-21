@@ -10,3 +10,5 @@
 - Ability to import blogs using scheduled RSS import and CSV upload
 - Fully tested code
 - A CRUD API for blog posts
+
+Create an account to add posts, upload a csv or configure the rss feed in the dashboard.
