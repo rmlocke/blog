@@ -133,12 +133,10 @@ class PostController extends Controller
 
             $fileExtension = $file->getClientOriginalExtension();
 
+            //check file type
             if ($fileExtension == 'csv') {
                 $filepath = $file->getRealPath();
-
-                //check file type
         
-                /*
                 $records = array_map('str_getcsv', file($filepath));
         
                 if (! count($records) > 0) {
@@ -169,8 +167,9 @@ class PostController extends Controller
                        'content' => $data['content'],
                        'user_id' => $data['user_id']
                     ]);
+
+                    $result[] = "added " . $data['title'];
                 }
-                */
             } else {
                 $result['error'] = 'File extension is not .csv';
             }

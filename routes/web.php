@@ -20,7 +20,7 @@ use App\Models\Rss;
 
 Route::get('/', function () {
 
-    $posts = Post::paginate(10);
+    $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
 
     return view('index', ['posts' => $posts]);
 });
