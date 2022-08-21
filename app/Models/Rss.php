@@ -9,6 +9,8 @@ class Rss
 {
     /**
      * Get items from rss feed
+     * 
+     * @return mixed
      */
     public function get()
     {
@@ -34,6 +36,11 @@ class Rss
         return $items;
     }
 
+    /**
+     * Get feed url
+     * 
+     * @return string
+     */
     public function getFeedUrl()
     {
         $feedUrl = Option::where('name', 'feed_url')->pluck('value')->first();

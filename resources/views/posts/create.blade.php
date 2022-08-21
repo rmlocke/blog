@@ -3,6 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Posts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Post</li>
+            </ol>
+        </nav>
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Add Post') }}</div>

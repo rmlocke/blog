@@ -3,7 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <h2>All users</h2>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Users</li>
+            </ol>
+        </nav>
+
+        <h1>All users</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -26,7 +34,7 @@
         @endforeach
         </tbody>
         </table>
-        <a href="{{ route('users.create') }}" class="btn btn-lg">Add user</a>
+        <a href="{{ route('users.create') }}" class="btn btn-lg btn-primary">Add user</a>
     </div>
 </div>
 @endsection
