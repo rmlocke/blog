@@ -57,6 +57,8 @@ class UserController extends Controller
 
         $user->save();
 
+        $request->session()->flash('message', 'User has been added');
+
         return redirect('/users');
     }
 
@@ -117,6 +119,8 @@ class UserController extends Controller
         ]);
 
         $user->save();
+
+        $request->session()->flash('message', 'User has been updated');
 
         return redirect('/users');
     }

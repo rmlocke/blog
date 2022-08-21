@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Option;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $option = new Option();
+
+        $feed_url = $option->getOption('feed_url');
+        $feed_active = $option->getOption( 'feed_active');
+
+        return view('home', ['feed_url' => $feed_url, 'feed_active' => $feed_active]);
     }
 }

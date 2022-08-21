@@ -11,6 +11,12 @@
             </ol>
         </nav>
 
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+        
         <div class="clearfix">
             <div class="float-start">
                 <h1>Users</h1>

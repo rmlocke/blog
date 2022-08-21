@@ -88,4 +88,28 @@ class OptionController extends Controller
     {
         //
     }
+
+    /**
+     * Update rss options
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function rssOptions(Request $request)
+    {
+
+        Option::updateOrCreate(
+            ['name' => 'feed_url'],
+            ['value' => $request->feed_url]
+        );
+
+        Option::updateOrCreate(
+            ['name' => 'feed_active'],
+            ['value' => $request->feed_active]
+        );
+
+        $request->session()->flash('message', 'RSS options updated');
+
+        return redirect('/home');
+    }
 }

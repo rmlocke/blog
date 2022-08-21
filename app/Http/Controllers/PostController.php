@@ -57,6 +57,8 @@ class PostController extends Controller
 
         $post->save();
 
+        $request->session()->flash('message', 'Post has been added');
+
         return redirect('/posts');
     }
 
@@ -103,6 +105,8 @@ class PostController extends Controller
             'content' => $request->content
         ]);
 
+        $request->session()->flash('message', 'Post has been updated');
+
         return redirect('/posts');
     }
 
@@ -139,37 +143,38 @@ class PostController extends Controller
         
                 $records = array_map('str_getcsv', file($filepath));
         
-                if (! count($records) > 0) {
-                   //error
-                }
-        
-                // Get field names from header column
-                $fields = array_map('strtolower', $records[0]);
-        
-                // Remove the header column
-                array_shift($records);
-        
-                foreach ($records as $record) {
-                    if (count($fields) != count($record)) {
-                        return 'csv_upload_invalid_data';
+                if (!count($records) > 0) {
+                    $result['error'] = 'No records in file';
+                } else {
+                    // Get field names from header column
+                    $fields = array_map('strtolower', $records[0]);
+            
+                    // Remove the header column
+                    array_shift($records);
+            
+                    foreach ($records as $record) {
+                        if (count($fields) != count($record)) {
+                            return 'csv_upload_invalid_data';
+                        }
+            
+                        // Set the field name as key
+                        $record = array_combine($fields, $record);
+            
+                        // Get the clean data
+                        $this->rows[] = $record;
                     }
-        
-                    // Set the field name as key
-                    $record = array_combine($fields, $record);
-        
-                    // Get the clean data
-                    $this->rows[] = $record;
-                }
-        
-                foreach ($this->rows as $data) {
-                    Post::create([
-                       'title' => $data['title'],
-                       'content' => $data['content'],
-                       'user_id' => $data['user_id']
-                    ]);
+            
+                    foreach ($this->rows as $data) {
+                        Post::create([
+                        'title' => $data['title'],
+                        'content' => $data['content'],
+                        'user_id' => $data['user_id']
+                        ]);
+                    }
 
-                    $result[] = "added " . $data['title'];
+                    $result['Success'] = "Added " . count($records) . " records";
                 }
+        
             } else {
                 $result['error'] = 'File extension is not .csv';
             }

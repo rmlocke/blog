@@ -57,3 +57,4 @@ Route::resource('comments', CommentController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/posts/csvupload', [App\Http\Controllers\PostController::class, 'csvupload'])->name('csvupload');
+Route::post('/options/rss', [App\Http\Controllers\OptionController::class, 'rssOptions'])->name('rssoptions');
