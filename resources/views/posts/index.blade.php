@@ -13,10 +13,10 @@
 
         <div class="clearfix">
             <div class="float-start">
-            <h1>Posts</h1>
+                <h1>Posts</h1>
             </div>
             <div class="float-end">
-            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-primary float-end">Add post</a>
+                <a href="{{ route('posts.create') }}" class="btn btn-lg btn-primary float-end">Add post</a>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
                                 {{ $post->title }}
                             </a>
                         </td>
-                        <td>{{ $post->user->name }}</td>
+                        <td>{{ $post->user->name ?? 'RSS' }}</td>
                         <td>{{ $post->created_at }}<td>
                         <td>
                             <a href="{{ route('posts.edit', $post) }}">Edit post</a>

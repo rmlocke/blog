@@ -13,11 +13,15 @@
                         {!! $post->content !!}
                     </div>
                     <p class="post-meta">
+                        @if(isset($post->user))
                         Posted by <a href="{{ route('users.show', $post->user)}}">{{ $post->user->name }}</a>
+                        @endif
                         <span class="post-date">at {{ $post->created_at }}</span>
                     </p>
                 </div>
             @endforeach
+
+            {!! $posts->links() !!}
         </div>
     </div>
 </div>
