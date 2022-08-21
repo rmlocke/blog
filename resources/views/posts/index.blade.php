@@ -11,7 +11,15 @@
             </ol>
         </nav>
 
-        <h1>Posts</h1>
+        <div class="clearfix">
+            <div class="float-start">
+            <h1>Posts</h1>
+            </div>
+            <div class="float-end">
+            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-primary float-end">Add post</a>
+            </div>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
@@ -40,7 +48,9 @@
                 @endforeach  
             </tbody>
         </table>
-        <a href="{{ route('posts.create') }}" class="btn btn-lg btn-primary">Add post</a>
+
+        {!! $posts->links() !!}
+
     </div>
 </div>
 @endsection

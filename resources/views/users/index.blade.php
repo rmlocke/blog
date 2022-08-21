@@ -11,7 +11,15 @@
             </ol>
         </nav>
 
-        <h1>All users</h1>
+        <div class="clearfix">
+            <div class="float-start">
+                <h1>Users</h1>
+            </div>
+            <div class="float-end">
+                <a href="{{ route('users.create') }}" class="btn btn-lg btn-primary float-end">Add user</a>
+            </div>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
@@ -34,7 +42,8 @@
         @endforeach
         </tbody>
         </table>
-        <a href="{{ route('users.create') }}" class="btn btn-lg btn-primary">Add user</a>
+
+        {!! $users->links() !!}
     </div>
 </div>
 @endsection
